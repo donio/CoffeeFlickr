@@ -31,10 +31,23 @@ img {max-height:125px; margin:3px; border:1px solid #dedede;}
 
 
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-
+<script src="http://http://cdnjs.cloudflare.com/ajax/libs/masonry/3.3.0/masonry.pkgd.min.js"></script>
 
 <script>
-
+$(document).ready(function(){
+      $('body').append('<div id="toTop" class="btn btn-info"><span class="glyphicon glyphicon-chevron-up"></span> Back to Top</div>');
+        $(window).scroll(function () {
+            if ($(this).scrollTop() != 0) {
+                $('#toTop').fadeIn();
+            } else {
+                $('#toTop').fadeOut();
+            }
+        }); 
+    $('#toTop').click(function(){
+        $("html, body").animate({ scrollTop: 0 }, 600);
+        return false;
+    });
+});
  // get gallery payload
      var url = "https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=647c88d6f5c9bb6dd667758060c9dd5c&tags=coffee&format=json&nojsoncallback=1";
     $.getJSON( url, function( data ) {
@@ -57,6 +70,7 @@ $("#flickr").append('<img src="https://farm' + farmId + '.staticflickr.com/' + s
 
  });
 });
+
 
 </script>
 <body>
@@ -129,7 +143,9 @@ $("#flickr").append('<img src="https://farm' + farmId + '.staticflickr.com/' + s
 
     <!-- Bootstrap Core JavaScript -->
     <script src="js/bootstrap.min.js"></script>
-
+<span class="body2">
+        <a id="back-to-top" href="#" class="btn btn-danger btn-lg back-to-top" role="button" title="Click to return on the top page" data-toggle="tooltip" data-placement="left"><span class="glyphicon glyphicon-chevron-up "></span></a>
+</span>
 </body>
 
 </html>
